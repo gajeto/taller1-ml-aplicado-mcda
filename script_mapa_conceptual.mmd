@@ -1,0 +1,138 @@
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "primaryColor": "#EEF2FF",
+    "primaryBorderColor": "#3730A3",
+    "primaryTextColor": "#111827",
+    "secondaryColor": "#ECFDF5",
+    "tertiaryColor": "#FFF7ED",
+    "lineColor": "#475569",
+    "textColor": "#0F172A",
+    "clusterBkg": "#F8FAFC",
+    "clusterBorder": "#94A3B8"
+  }
+}}%%
+
+flowchart LR
+  %% --- IA y subcampos ---
+  subgraph IA["Inteligencia Artificial
+  (Sistemas que realizan tareas propias de la inteligencia humana)"]
+    direction TB
+    subgraph ML["Machine Learning
+    (Modelos que aprenden de datos)"]
+      direction TB
+      DL["Deep Learning
+      (Redes neuronales profundas para visión, texto, voz)"]
+      MLc["Algoritmos ML clásicos
+      (árboles, SVM, regresión, kNN)"]
+    end
+    RPA["Sistemas basados en reglas
+    (lógica explícita, conocimiento experto)"]
+    OPT["Optimización / Búsqueda
+    (toma de decisiones bajo restricciones)"]
+  end
+
+  %% --- Ciencia de Datos y pilares ---
+  DS["Ciencia de Datos (Data Science)
+  (De datos a decisiones: estadística + programación + negocio)"]
+  EST["Estadística
+  (inferencia, probabilidad, modelos)"]
+  DE["Ingeniería de Datos
+  (ingesta, calidad, pipelines, APIs)"]
+  VIS["Visualización de Datos
+  (comunicar hallazgos y decisiones)"]
+  DM["Minería de Datos
+  (descubrir patrones y relaciones)"]
+
+  %% --- Big Data y BI ---
+  BD["Big Data
+  (volumen, variedad, velocidad; infra para datos masivos)"]
+  BI["Inteligencia de Negocios (BI)
+  (dashboards, KPIs, monitoreo)"]
+  REP["Reportes / Dashboards
+  (vistas operativas y ejecutivas)"]
+
+  %% --- Ejes analíticos ---
+  DESC["Analítica Descriptiva
+  (qué pasó)"]
+  PRED["Analítica Predictiva
+  (qué puede pasar)"]
+  PRES["Analítica Prescriptiva
+  (qué conviene hacer)"]
+
+  %% Jerarquías
+  IA --> ML
+  ML --> DL
+
+  %% Pilares de DS
+  DS --> EST
+  DS --> DE
+  DS --> VIS
+  DS --> DM
+
+  %% Conexiones
+  DS -->|usa| ML
+  EST -.->|fundamenta| ML
+  DM -.->|patrones| ML
+  VIS -.->|comunica| BI
+
+  %% Big Data como habilitador
+  BD -.->|infraestructura| DE
+  BD -.->|datasets masivos| DS
+  BD -.->|entrenamiento| ML
+  BD -.->|fuente| BI
+
+  %% BI como capa de decisión
+  BI --> REP
+  DS -.->|insights| BI
+
+  %% Ejes analíticos
+  BI --> DESC
+  ML --> PRED
+  OPT --> PRES
+
+  %% ====== NOTAS / EJEMPLOS ======
+  DS_NOTE["Nota DS:
+  Ciclo típico → formular pregunta → obtener datos → limpiar → modelar → evaluar → comunicar/operacionalizar"]
+  ML_EX["Ejemplos ML:
+  scoring crediticio, churn, recomendadores, detección de fraude"]
+  DL_EX["Ejemplos DL:
+  visión por computadora, NLP, speech-to-text"]
+  BI_EX["Ejemplos BI:
+  KPIs, alertas, paneles autoservicio, seguimiento OKRs"]
+  BD_EX["Ecosistema Big Data:
+  Spark, Hadoop, data lakes, orquestación (Airflow)"]
+  EST_EX["Herramientas estadísticas:
+  pruebas de hipótesis, intervalos, GLM, bayesiano"]
+  DM_EX["Técnicas de minería:
+  clustering, reglas de asociación, secuencias"]
+
+  DS -.-> DS_NOTE
+  ML -.-> ML_EX
+  DL -.-> DL_EX
+  BI -.-> BI_EX
+  BD -.-> BD_EX
+  EST -.-> EST_EX
+  DM -.-> DM_EX
+
+  %% ====== ESTILO / COLORES ======
+  classDef ia        fill:#DBEAFE,stroke:#1D4ED8,color:#0B1324;
+  classDef ml        fill:#E0E7FF,stroke:#3730A3,color:#0B1324;
+  classDef ds        fill:#ECFDF5,stroke:#047857,color:#052E1B;
+  classDef support   fill:#F1F5F9,stroke:#64748B,color:#0F172A;
+  classDef bigdata   fill:#FEF3C7,stroke:#D97706,color:#3B1D02;
+  classDef bi        fill:#E0E7FF,stroke:#4338CA,color:#0B1324;
+  classDef outputs   fill:#F8FAFC,stroke:#475569,color:#0F172A;
+  classDef analytics fill:#FFE4E6,stroke:#E11D48,color:#3B0A0E;
+  classDef note      fill:#FFFFFF,stroke:#CBD5E1,color:#0F172A;
+
+  class IA,RPA,OPT ia;
+  class ML,DL,MLc ml;
+  class DS ds;
+  class EST,DE,VIS,DM support;
+  class BD bigdata;
+  class BI bi;
+  class REP outputs;
+  class DESC,PRED,PRES analytics;
+
+  class DS_NOTE,ML_EX,DL_EX,BI_EX,BD_EX,EST_EX,DM_EX note;
